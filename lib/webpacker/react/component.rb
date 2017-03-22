@@ -12,7 +12,8 @@ module Webpacker
 
       def render(props = {}, options = {})
         data = { data: { "react-class" => @name, "react-props" => props.to_json } }
-        content_tag(:div, nil, options.deep_merge(data))
+        html_tag = options[:tag] || :div
+        content_tag(html_tag, nil, options.except(:tag).deep_merge(data))
       end
     end
   end
